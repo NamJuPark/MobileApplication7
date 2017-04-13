@@ -53,13 +53,15 @@ public class Main2Activity extends AppCompatActivity {
             store = new Store(etname.getText().toString(), ettel.getText().toString()
                     , etmenu1.getText().toString(), etmenu2.getText().toString()
                     , etmenu3.getText().toString(), ethomepage.getText().toString(), 1, date);
-        } else if (radio2.isChecked()) {
+        }
+        else if (radio2.isChecked()) {
 
             store = new Store(etname.getText().toString(), ettel.getText().toString()
                     , etmenu1.getText().toString(), etmenu2.getText().toString()
                     , etmenu3.getText().toString(), ethomepage.getText().toString(), 2, date);
 
-        } else {
+        }
+        else {
             store = new Store(etname.getText().toString(), ettel.getText().toString()
                     , etmenu1.getText().toString(), etmenu2.getText().toString()
                     , etmenu3.getText().toString(), ethomepage.getText().toString(), 3, date);

@@ -9,6 +9,41 @@
     android:padding="5dp">
 
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/addStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="맛집추가" />
+
+        <Button
+            android:text="이름순"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bOrderName"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="종류별"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bCategory"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="선택"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bchoose"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffe5e5"
@@ -18,29 +53,24 @@
             android:layout_width="40dp"
             android:layout_height="33dp"
             android:layout_margin="8dp"
-            android:src="@drawable/plate"/>
+            android:src="@drawable/plate"
+            android:adjustViewBounds="false" />
 
-        <TextView
-            android:id="@+id/tv"
+        <EditText
+            android:hint="검색할 맛집을 넣으세요"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="맛집 리스트(0개)"
-            android:textColor="#3276a0"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/eSearch"
+            android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/addStore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="맛집추가" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

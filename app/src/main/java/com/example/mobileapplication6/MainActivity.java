@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lv;
     ArrayList<Store> data_store = new ArrayList<Store>();
-    ArrayList<String> data_name = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    list_item_Adapter adapter;
     Store store;
     Intent intent;
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void setListView(){
 
         lv = (ListView)findViewById(R.id.listview);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,data_name);
+        adapter = new list_item_Adapter(this, data_store);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,31 +48,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int num, long l) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-
-                builder.setTitle("삭제확인")
-                        .setIcon(R.drawable.plate)
-                        .setMessage("선택한 맛집을 삭제 하시겠습니까?")
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                data_name.remove(num);
-                                data_store.remove(num);
-                                adapter.notifyDataSetChanged();
-                                Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
-                                .show();
-                            }
-                        })
-                        .setNegativeButton("취소", null)
-                        .show();
-
-                return true;
-            }
-        });
+//
+//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int num, long l) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//
+//                builder.setTitle("삭제확인")
+//                        .setIcon(R.drawable.plate)
+//                        .setMessage("선택한 맛집을 삭제 하시겠습니까?")
+//                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                data_store.remove(num);
+//                                adapter.notifyDataSetChanged();
+//                                Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
+//                                .show();
+//                            }
+//                        })
+//                        .setNegativeButton("취소", null)
+//                        .show();
+//
+//                return true;
+//            }
+//        });
     }
 
     public void onClick(View v){
@@ -88,12 +86,10 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == _REQ){
             if(resultCode ==  RESULT_STORE){
                 Store store = data_.getParcelableExtra("store");
-                data_store.add(store);
-                data_name.add(store.name);
+                adapter.add(store);
                 adapter.notifyDataSetChanged();
             }
             else if(resultCode == RESULT_CANCLED){
-
             }
         }
     }
