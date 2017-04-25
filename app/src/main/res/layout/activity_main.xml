@@ -26,20 +26,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bOrderName"
+            android:onClick="onClick"
             android:layout_weight="1" />
 
         <Button
             android:text="종류별"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bCategory"
+            android:id="@+id/bOrderKind"
+            android:onClick="onClick"
             android:layout_weight="1" />
 
         <Button
             android:text="선택"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bchoose"
+            android:id="@+id/bChoose"
+            android:onClick="onClick"
             android:layout_weight="1" />
     </LinearLayout>
 

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="50dp"
@@ -14,9 +16,12 @@
         />
 
     <LinearLayout
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/ivMenu"
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
         <TextView
             android:text="Menu"
@@ -31,5 +36,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvTel" />
+
     </LinearLayout>
-</LinearLayout>
+
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox"
+            android:checked="false"
+            android:duplicateParentState="false"
+            android:visibility="invisible"
+            android:layout_weight="1" />
+    </RelativeLayout>
+
+</RelativeLayout>

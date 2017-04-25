@@ -6,12 +6,18 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,20 +85,57 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(MainActivity.this, Main2Activity.class);
             startActivityForResult(intent, _REQ);
         }
+        else if( v.getId() == R.id.bOrderName){
+            Collections.sort(data_store, orderName);
+            adapter.notifyDataSetChanged();
+
+        }
+        else if(v.getId() == R.id.bOrderKind){
+            Collections.sort(data_store, orderKind);
+            adapter.notifyDataSetChanged();
+
+        }
+        else if(v.getId() == R.id.bChoose){
+            Button bChoose = (Button)findViewById(R.id.bChoose);
+            if(bChoose.getText().equals("선택")){
+                bChoose.setText("삭제");
+
+            }
+            else if(bChoose.getText().equals("삭제")){
+
+            }
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data_) {
         super.onActivityResult(requestCode, resultCode, data_);
-        if(requestCode == _REQ){
-            if(resultCode ==  RESULT_STORE){
+        if (requestCode == _REQ) {
+            if (resultCode == RESULT_STORE) {
                 Store store = data_.getParcelableExtra("store");
                 adapter.add(store);
                 adapter.notifyDataSetChanged();
-            }
-            else if(resultCode == RESULT_CANCLED){
+            } else if (resultCode == RESULT_CANCLED) {
             }
         }
     }
+
+    Comparator<Store> orderName  = new Comparator<Store>() {
+        @Override
+        public int compare(Store store, Store t1) {
+            String s = store.name;
+            String s1 = t1.name;
+            return  s.compareToIgnoreCase(s1);
+        }
+    };
+
+    Comparator<Store> orderKind  = new Comparator<Store>() {
+        @Override
+        public int compare(Store store, Store t1) {
+            if(store.num_category < t1.num_category) return -1;
+            else if(store.num_category == t1.num_category) return 0;
+            else return 1;
+        }
+    };
 
 
 }
