@@ -73,6 +73,7 @@
 
     <ListView
         android:id="@+id/listview"
+        android:textFilterEnabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
