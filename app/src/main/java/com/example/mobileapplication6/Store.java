@@ -8,7 +8,7 @@ import android.os.Parcelable;
  * Created by 박남주 on 2017-04-06.
  */
 
-public class Store implements Parcelable {
+public class Store implements Parcelable{
     String name;
     String tel;
     String [] menu;

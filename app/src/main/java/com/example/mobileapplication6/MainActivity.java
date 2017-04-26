@@ -42,22 +42,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setListView();
         eSearch= (EditText)findViewById(R.id.eSearch);
-//        eSearch.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                String search = s.toString();
-//                if (search.length() > 0) lv.setFilterText(search);
-//                else lv.clearTextFilter();
-//            }
-//        });
+        eSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                String search = s.toString();
+                if (search.length() > 0) {
+                    lv.setFilterText(search);
+                }
+                else lv.getTextFilter();
+        }});
     }
     public void setListView(){
+//            }
 
         lv = (ListView)findViewById(R.id.listview);
         adapter = new list_item_Adapter(this, data_store);
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 Store store = data_.getParcelableExtra("store");
                 adapter.add(store);
                 adapter.notifyDataSetChanged();
-            } else if (resultCode == RESULT_CANCLED) {
+            } else if (resultCode == RESULT_CANCLED){
             }
         }
     }
