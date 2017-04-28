@@ -3,6 +3,7 @@ package com.example.mobileapplication6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.CheckBox;
 
 /**
  * Created by 박남주 on 2017-04-06.
@@ -15,7 +16,7 @@ public class Store implements Parcelable{
     String homepage;
     String date_regist;
     int num_category;
-    Boolean checked;
+    CheckBox checkBox;
 
     public Store(String name, String tel, String menu1, String menu2, String menu3, String homepage ,int num_category, String date_regist){
         menu = new String[3];
@@ -27,7 +28,6 @@ public class Store implements Parcelable{
         this.homepage = homepage;
         this.num_category = num_category;
         this.date_regist = date_regist;
-        this.checked = Boolean.FALSE;
     }
 
     protected Store(Parcel in) {

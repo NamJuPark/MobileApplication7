@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     ListView lv;
     ArrayList<Store> data_store = new ArrayList<Store>();
     list_item_Adapter adapter;
-    Store store;
     Intent intent;
     EditText eSearch;
 
@@ -53,14 +52,12 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String search = s.toString();
                 if (search.length() > 0) {
-                    lv.setFilterText(search);
+                   lv.setFilterText(search);
                 }
-                else lv.getTextFilter();
+                else {lv.clearTextFilter();}
         }});
     }
     public void setListView(){
-//            }
-
         lv = (ListView)findViewById(R.id.listview);
         adapter = new list_item_Adapter(this, data_store);
         lv.setAdapter(adapter);
@@ -73,30 +70,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//                lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//                    @Override
+//                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int num, long l) {
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 //
-//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int num, long l) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//
-//                builder.setTitle("삭제확인")
-//                        .setIcon(R.drawable.plate)
-//                        .setMessage("선택한 맛집을 삭제 하시겠습니까?")
-//                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                data_store.remove(num);
-//                                adapter.notifyDataSetChanged();
-//                                Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
+//                        builder.setTitle("삭제확인")
+//                                .setIcon(R.drawable.plate)
+//                                .setMessage("선택한 맛집을 삭제 하시겠습니까?")
+//                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                        data_store.remove(num);
+//                                        adapter.notifyDataSetChanged();
+//                                        Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
+//                                                .show();
+//                                    }
+//                                })
+//                                .setNegativeButton("취소", null)
 //                                .show();
-//                            }
-//                        })
-//                        .setNegativeButton("취소", null)
-//                        .show();
-//
-//                return true;
-//            }
-//        });
+//                        return true;
+//                    }
+//                });
     }
 
     public void onClick(View v){
@@ -116,13 +112,28 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(v.getId() == R.id.bChoose){
             Button bChoose = (Button)findViewById(R.id.bChoose);
-            if(bChoose.getText().equals("선택")){
+            if(bChoose.getText().toString().equals("선택")){
                 bChoose.setText("삭제");
-
+                adapter.visibleCheckBox();
             }
-            else if(bChoose.getText().equals("삭제")){
-
-            }
+            else if(bChoose.getText().toString().equals("삭제")){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("삭제확인")
+                        .setIcon(R.drawable.plate)
+                        .setMessage("선택한 맛집을 삭제 하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                adapter.remove();
+                                Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
+                                        .show();
+                            }
+                        })
+                        .setNegativeButton("취소", null)
+                        .show();
+                bChoose.setText("선택");
+                adapter.invisibleCheckBox();
+             }
         }
     }
     @Override
