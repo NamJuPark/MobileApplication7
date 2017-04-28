@@ -71,28 +71,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//                lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//                    @Override
-//                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int num, long l) {
-//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//
-//                        builder.setTitle("삭제확인")
-//                                .setIcon(R.drawable.plate)
-//                                .setMessage("선택한 맛집을 삭제 하시겠습니까?")
-//                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialogInterface, int i) {
-//                                        data_store.remove(num);
-//                                        adapter.notifyDataSetChanged();
-//                                        Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT)
-//                                                .show();
-//                                    }
-//                                })
-//                                .setNegativeButton("취소", null)
-//                                .show();
-//                        return true;
-//                    }
-//                });
     }
 
     public void onClick(View v){
